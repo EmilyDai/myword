@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+ 
+{% block title %}
+{{ function.name }}
+{% endblock title %}
+ 
+{% block content %}
+<div class="col-xs-6 col-sm-1">
+</div>
+<div class="col-xs-6 col-sm-3">
+{% ifequal function.name "单词" %}
+{% if flag %}
+
+        <p>你选择了背诵：{{ user.column }}</p>
+		<p>每天单词数：{{ user.count }}</p>
+		<a href="bdc"><input type="button" value="去背单词" class="btn btn-success"></a>
+		<a href="reset"><input type="button" value="重新设置" class="btn btn-success" id='reset'></a>
+
+
+
+{% else %}
+	<p>还没有登陆哦，去首页登陆吧</p>
+{% endif %}
+{% else %}
+{% endifequal %}
+</div>
+{% endblock content %}

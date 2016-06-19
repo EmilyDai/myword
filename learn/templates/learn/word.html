@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ word.name }}
+{% endblock title %}
+ 
+ 
+{% block content %}
+<style>
+h1
+{
+color:#209e85;
+text-align:center;
+}
+h3
+{
+color:#209e85;
+text-align:center;
+}
+p
+{
+
+font-family:"Times New Roman";
+font-size:18px;
+}
+</style>
+
+        <h1 class="text-center">单词：{{ word.name }}</h1>
+
+        <h3 class="text-center">{{ word.content }}</h3>
+
+
+<div class="container">
+   <div class="row" >
+	<div class="col-xs-6 col-sm-1">
+	</div>
+      <div class="col-xs-6 col-sm-3">
+        <p>共享笔记:</p>
+        {% for comment in comment_all %}
+			<p>笔记内容：{{ comment.content }}</p>
+			<p>作者：{{ comment.author }}</p>
+			<p>****************************************************</p>
+		{% endfor %}
+		</div>
+		<div class="col-xs-6 col-md-offset-2">
+        <p>我的笔记:</p>
+        {% for comment in comment_my %}
+			<p>笔记内容：{{ comment.content }}</p>
+			<p>-----作者：{{ comment.author }}</p>
+			<p>****************************************************</p>
+		{% endfor %}
+		
+			<form method='post'>
+			{% csrf_token %}
+
+			{{ form }}
+			<input type="submit" value="添加我的笔记">
+			</form>
+			<a href="http://127.0.0.1:8000/function/danci/bdc/"><input type="button" value="返回去背下一个" class="btn btn-success"></a>
+			</div>
+</div>
+</div>
+
+{% endblock content %}

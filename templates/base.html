@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}我爱背单词{% endblock title %} - 我爱背单词</title>
+  
+    <!-- Bootstrap -->
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+  
+    <!-- 引入下面两个库让 IE8 支持 HTML5 元素 -->
+    <!-- 警告: Respond.js 通过 file:// 浏览的时候不能正常工作！-->
+    <!--[if lt IE 9]>
+      <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+      <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+    body {
+        padding-top: 60px;
+    }
+    </style>
+    {% block css %}
+        
+    {% endblock css %}
+
+    {% block js %}
+        
+    {% endblock js %}
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="row" >
+	
+    <div class="container">
+	<div class="col-xs-12 col-sm-6">
+      <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> 
+         <span class="sr-only">Toggle navigation</span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         </button> 
+         <span class="navbar-brand"><a href="/">首页</a></span>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          {% for function in nav_display_functions %}
+              <li><a href="{{ function.get_absolute_url }}"> {{ function.name }} </a></li>
+          {% endfor %}
+
+        </ul>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6">
+	<ul class="text-right">
+	{% if flag %}
+
+        <span>欢迎你：{{ username }}</span>
+		<a href="http://127.0.0.1:8000/accounts/logout/"><input type="button" value="退出登录" class="btn btn-success"></a>
+
+	{% else %}
+	<p>
+		<a href="http://127.0.0.1:8000/accounts/regist/"><input type="button" value="还没有账号，去注册？" class="btn btn-success"></a>
+		<a href="http://127.0.0.1:8000/accounts/login/"><input type="button" value="已有账号，去登陆？" class="btn btn-success"></a>
+	</p>
+	{% endif %}
+	</ul>
+</div>
+	</div>
+	
+
+	</div>
+    </nav>
+
+    <div class="row clearfix">
+        <div class="col-md-12">
+            {% block content %}
+                <h1>我爱背单词</h1>
+            {% endblock content %}
+        </div>
+    </div>
+
+
+  
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

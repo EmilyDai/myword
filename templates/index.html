@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+ 
+{% block title %} 首页 {% endblock title %}
+ 
+ 
+{% block content %}
+
+<div class="container">
+<div class="row">
+ <div class="col-xs-6 col-sm-3">
+<ul>
+
+    {% for function in  home_display_functions %}
+        <li>
+            <a href="{{ function.get_absolute_url }}"> {{ function.name }} </a>
+        </li>
+    {% endfor %}
+
+</ul>
+</div>
+
+</div>
+</div>
+{% endblock content %}

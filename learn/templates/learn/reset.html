@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+ 
+{% block title %}
+重设模式
+{% endblock title %}
+ 
+ 
+{% block content %}
+{% ifequal function.name "单词" %}
+{% if flag %}
+<div class="col-xs-6 col-sm-1">
+</div>
+<div class="col-xs-6 col-sm-2">
+<form  method="post">
+{% csrf_token %}
+
+<p>选择背诵：</p>
+{% for column in function.column_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ column.name }}" />
+    <label for="choice{{ forloop.counter }}">{{  column.name  }}</label><br />
+{% endfor %}
+</div>
+<div class="col-xs-6 col-sm-2">
+<p>每天单词数量：</p>
+{% for count in count_list %}
+    <input type="radio" name="count" id="choice{{ forloop.counter }}" value="{{ count }}" />
+    <label for="choice{{ forloop.counter }}">{{  count  }}</label><br />
+{% endfor %}
+<input type="submit" value="确定" />
+</form>
+
+{% else %}
+	<p>还没有登陆哦，去首页登陆吧</p>
+{% endif %}
+{% else %}
+{% endifequal %}
+</div>
+<div class="col-xs-6 col-sm-1">
+</div>
+<div class="col-xs-6 col-sm-3">
+        <p>你选择了背诵：{{ user.column }}</p>
+		<p>每天单词数：{{ user.count }}</p>
+		<a href="http://127.0.0.1:8000/function/danci"><input type="button" value="返回" class="btn btn-success"></a>
+</div>
+{% endblock content %}

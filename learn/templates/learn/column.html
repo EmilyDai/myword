@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+ 
+{% block title %}
+{{ column.title }}
+{% endblock title %}
+ 
+ 
+{% block content %}
+
+<p>分类名称：{{ column.name }}</p>
+分类单词列表：
+<ul>
+    {% for word in column.word_set.all %}
+        <li>
+            <a href="{{ word.get_absolute_url }}">{{ word.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock content %}
